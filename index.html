@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #16000a, #70002f, #ff176b);
+        }
+        .sobre {
+    position: relative;
+    width: 180px;
+    height: 120px;
+    margin: 0 auto 25px;
+    background: #e91e63;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 80, 150, 0.7);
+    transition: transform 0.5s;
+}
+
+.sobre:hover {
+    transform: scale(1.05);
+}
+
+.solapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-top: 70px solid #ad1457;
+    transform-origin: top;
+    transition: transform 0.8s;
+}
+
+.hoja {
+    position: absolute;
+    width: 100px;
+    height: 70px;
+    left: 40px;
+    top: 25px;
+    background: white;
+    color: #e91e63;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+
+.sobre.abierto .solapa {
+    transform: rotateX(180deg);
+}
+        .contenedor {
+            width: 90%;
+            max-width: 500px;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 35px rgba(255,255,255,0.25);
+            z-index: 2;
+        }
+
+        .corazon {
+            font-size: 85px;
+            animation: latido 1.2s infinite;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 15px 0;
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #d6004f;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #mensaje {
+            display: none;
+            margin-top: 25px;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .flotante {
+            position: fixed;
+            bottom: -50px;
+            font-size: 25px;
+            pointer-events: none;
+            animation: subir linear forwards;
+        }
+
+        @keyframes latido {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes subir {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+      <div class="sobre" onclick="abrirSobre(this)">
+    <div class="solapa"></div>
+    <div class="hoja">💌</div>
+</div>
+        <div class="corazon">❤️</div>
+
+        <h1>Para alguien especial 💌</h1>
+
+        <p>
+            Esta página fue creada especialmente para ti.
+            ❤️
+        </p>
+
+        <p>
+            Hay personas que hacen que nuestros días
+            sean mucho más bonitos. ✨
+        </p>
+
+        <button onclick="mostrarMensaje()">
+            💖 Tengo algo que decirte
+        </button>
+
+        <div id="mensaje">
+            ❤️ Si llegaste hasta aquí... ❤️
+            <br><br>
+            Quiero que sepas que eres
+            una persona muy especial para mí. 🌹
+            <br><br>
+            Gracias por existir. 💕
+        </div>
+
+    </div>
+
+    <script>
+       function abrirSobre(sobre) {
+    sobre.classList.toggle("abierto");}
+            function mostrarMensaje() {
+            document.getElementById("mensaje").style.display = "block";
+        }
+
+        function crearCorazon() {
+            const corazon = document.createElement("div");
+
+            corazon.className = "flotante";
+            corazon.innerHTML = ["❤️", "💕", "💗", "💖", "💘"][Math.floor(Math.random() * 5)];
+
+            corazon.style.left = Math.random() * 100 + "vw";
+
+            corazon.style.animationDuration =
+                (5 + Math.random() * 5) + "s";
+
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+                corazon.remove();
+            }, 10000);
+        }
+
+        setInterval(crearCorazon, 500);
+    </script>
+
+</body>
+</html>
