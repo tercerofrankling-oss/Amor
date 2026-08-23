@@ -143,6 +143,29 @@
                 opacity: 0;
             }
         }
+       .nombre-animado {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 15px 0;
+    animation: aparecer 2s ease-in-out;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-30px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
     </style>
 </head>
 
@@ -155,7 +178,8 @@
 </div>
         <div class="corazon">❤️</div>
 
-        <h1>Para alguien especial 💌</h1>
+        <div class="nombre-animado"> Para Susbeyling ✨
+</div>
 
         <p>
             Esta página es creada especialmente para uste. 
@@ -163,7 +187,7 @@
 
         <p>
             Hay personas que hacen que nuestros días
-            sean mucho más bonitos y para es uste tania 
+            sean mucho más bonitos y para mi es uste  
 . ✨
         </p>
 
