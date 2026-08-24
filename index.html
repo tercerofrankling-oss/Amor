@@ -1,69 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti ❤️</title>
-   <!-- Google tag (gtag.js) -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Tania ❤️</title>
+
+
+<!-- Google Analytics -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBFGGV2YV3"></script>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-RBFGGV2YV3');
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-RBFGGV2YV3');
 </script>
-    <style>
-       #fotoAmor {
-    display: none;
-    width: 85%;
-    max-width: 350px;
-    margin: 25px auto;
-    border-radius: 20px;
-    box-shadow: 0 0 25px #ff1493;
-    animation: aparecerFoto 1s ease;
+
+
+<style>
+
+* {
+    box-sizing: border-box;
 }
 
-@keyframes aparecerFoto {
-    from {
-        opacity: 0;
-        transform: scale(0.5) rotate(-5deg);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-    }
-}
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-        body {
+body {
     margin: 0;
     min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
     font-family: Georgia, serif;
-nano index.html    color: #5a1833;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #a18cd1);
+    overflow-x: hidden;
+    color: #fff;
 }
-            
-        }
-        .sobre {
+
+.fondo {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: subir 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px 18px 50px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.sobre {
     position: relative;
-    width: 180px;
-    height: 120px;
-    margin: 0 auto 25px;
-    background: #e91e63;
-    border-radius: 8px;
+    width: 280px;
+    height: 180px;
+    margin: 10px auto 35px;
+    background: #ff176f;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 0 30px rgba(255, 80, 150, 0.7);
+    box-shadow: 0 15px 35px rgba(255,0,100,0.5);
     transition: transform 0.5s;
 }
 
 .sobre:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
+}
+
+.sobre:active {
+    transform: scale(0.95);
 }
 
 .solapa {
@@ -72,202 +110,290 @@ nano index.html    color: #5a1833;
     left: 0;
     width: 0;
     height: 0;
-    border-left: 90px solid transparent;
-    border-right: 90px solid transparent;
-    border-top: 70px solid #ad1457;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 95px solid #c90050;
+    z-index: 3;
     transform-origin: top;
     transition: transform 0.8s;
-}
-
-.hoja {
-    position: absolute;
-    width: 100px;
-    height: 70px;
-    left: 40px;
-    top: 25px;
-    background: white;
-    color: #e91e63;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
 }
 
 .sobre.abierto .solapa {
     transform: rotateX(180deg);
 }
-        .contenedor {
-            width: 90%;
-            max-width: 500px;
-            padding: 35px 25px;
-            text-align: center;
-            border-radius: 30px;
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 35px rgba(255,255,255,0.25);
-            z-index: 2;
-        }
 
-        .corazon {
-            font-size: 85px;
-            animation: latido 1.2s infinite;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin: 15px 0;
-        }
-
-        p {
-            font-size: 19px;
-            line-height: 1.6;
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 30px;
-            background: white;
-            color: #d6004f;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #mensaje {
-            display: none;
-            margin-top: 25px;
-            font-size: 20px;
-            line-height: 1.6;
-        }
-
-        .flotante {
-            position: fixed;
-            bottom: -50px;
-            font-size: 25px;
-            pointer-events: none;
-            animation: subir linear forwards;
-        }
-
-        @keyframes latido {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        @keyframes subir {
-            from {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-       .nombre-animado {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 15px 0;
-    animation: aparecer 2s ease-in-out;
+.hoja {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 90px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    z-index: 2;
 }
 
-@keyframes aparecer {
+.corazon {
+    font-size: 100px;
+    animation: latido 1.2s infinite;
+    filter: drop-shadow(0 5px 15px rgba(255,0,80,0.5));
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+.nombre {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0 20px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+p {
+    font-size: 22px;
+    line-height: 1.6;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#fotoAmor {
+    display: none;
+    width: 90%;
+    max-width: 380px;
+    margin: 30px auto;
+    border-radius: 25px;
+    border: 5px solid white;
+    box-shadow:
+        0 0 20px #fff,
+        0 0 40px #ff1493;
+    animation: aparecerFoto 1.5s ease;
+}
+
+@keyframes aparecerFoto {
+
     0% {
         opacity: 0;
-        transform: scale(0.3) translateY(-30px);
+        transform: scale(0.3) rotate(-10deg);
     }
 
     60% {
-        opacity: 1;
-        transform: scale(1.15);
+        transform: scale(1.1) rotate(3deg);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) rotate(0);
     }
 }
-    </style>
+
+button {
+    border: none;
+    background: white;
+    color: #d41463;
+    padding: 17px 25px;
+    border-radius: 40px;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#mensaje {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 25px;
+    animation: mensaje 1s ease;
+}
+
+@keyframes mensaje {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#mensaje p {
+    font-size: 21px;
+}
+
+.final {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <div class="contenedor">
-     <div class="sobre" onclick="abrirSobre(this)">
-    <div class="solapa"></div>
-    <div class="hoja">💌</div>
+<div class="fondo">
+
+    <div class="corazon-flotante" style="left:10%; animation-delay:0s;">❤️</div>
+
+    <div class="corazon-flotante" style="left:25%; animation-delay:2s;">💗</div>
+
+    <div class="corazon-flotante" style="left:40%; animation-delay:4s;">💕</div>
+
+    <div class="corazon-flotante" style="left:60%; animation-delay:1s;">💖</div>
+
+    <div class="corazon-flotante" style="left:75%; animation-delay:3s;">❤️</div>
+
+    <div class="corazon-flotante" style="left:90%; animation-delay:5s;">💘</div>
+
 </div>
 
-<img id="fotoAmor" src="foto.jpg" alt="Nuestra foto">
-    <div class="solapa"></div>
-    <div class="hoja">💌</div>
-</div>
-        <div class="corazon">❤️</div>
 
-        <div class="nombre-animado"> Para tania ✨
-</div>
+<div class="contenedor">
 
-        <p>
-            Esta página es creada especialmente para uste. 
-        </p>
 
-        <p>
-            Hay personas que hacen que nuestros días
-            sean mucho más bonitos y para mi es uste  
-. ✨
-        </p>
+    <div class="sobre" onclick="abrirSobre(this)">
 
-        <button onclick="mostrarMensaje()">
-            💖 Tengo algo que decirte
-        </button>
+        <div class="solapa"></div>
 
-        <div id="mensaje">
-            ❤️ Si llegaste hasta aquí... ❤️
-            <br><br>
-            Quiero que sepas que eres
-            una persona muy especial para mí. 🌹
-            <br><br>
-            Gracias por existir. 💕
+        <div class="hoja">
+            💌
         </div>
 
     </div>
 
 
-    <script>
-       function abrirSobre(sobre) {
-    sobre.classList.toggle("abierto");}
-            function mostrarMensaje() {
-            document.getElementById("fotoamor").style.display = "block";
-        }
+    <div class="corazon">
+        ❤️
+    </div>
 
-        function crearCorazon() {
-            const corazon = document.createElement("div");
 
-            corazon.className = "flotante";
-            corazon.innerHTML = ["❤️", "💕", "💗", "💖", "💘"][Math.floor(Math.random() * 5)];
+    <div class="nombre">
+        Para Tania ✨
+    </div>
 
-            corazon.style.left = Math.random() * 100 + "vw";
 
-            corazon.style.animationDuration =
-                (5 + Math.random() * 5) + "s";
+    <p>
+        Esta página fue creada
+        especialmente para ti. 💖
+    </p>
 
-            document.body.appendChild(corazon);
 
-            setTimeout(() => {
-                corazon.remove();
-            }, 10000);
-        }
+    <p>
+        Hay personas que hacen que
+        nuestros días sean mucho más
+        bonitos y para mí eres tú. ✨
+    </p>
 
-        setInterval(crearCorazon, 500);
-    </script>
+
+    <img
+        id="fotoAmor"
+        src="foto.jpg"
+        alt="Una foto especial"
+    >
+
+
+    <button onclick="mostrarMensaje()">
+        💖 Tengo algo que decirte
+    </button>
+
+
+    <div id="mensaje">
+
+        <p>
+            💗 Si llegaste hasta aquí... 💗
+        </p>
+
+        <p>
+            Quiero que sepas que eres
+            una persona muy especial
+            para mí. 🌹
+        </p>
+
+        <p>
+            Gracias por existir. 💕
+        </p>
+
+    </div>
+
+
+    <div class="final">
+        ❤️ Con cariño ❤️
+    </div>
+
+
+</div>
+
+
+<script>
+
+function abrirSobre(sobre) {
+
+    sobre.classList.toggle("abierto");
+
+    const foto = document.getElementById("fotoAmor");
+
+    if (sobre.classList.contains("abierto")) {
+
+        foto.style.display = "block";
+
+        setTimeout(function() {
+
+            foto.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 500);
+
+    } else {
+
+        foto.style.display = "none";
+
+    }
+
+}
+
+
+function mostrarMensaje() {
+
+    const mensaje = document.getElementById("mensaje");
+
+    mensaje.style.display = "block";
+
+    mensaje.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+</script>
+
 
 </body>
 </html>
