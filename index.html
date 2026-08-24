@@ -14,6 +14,26 @@
   gtag('config', 'G-RBFGGV2YV3');
 </script>
     <style>
+       #fotoAmor {
+    display: none;
+    width: 85%;
+    max-width: 350px;
+    margin: 25px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ff1493;
+    animation: aparecerFoto 1s ease;
+}
+
+@keyframes aparecerFoto {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
         * {
             box-sizing: border-box;
         }
@@ -181,7 +201,12 @@ nano index.html    color: #5a1833;
 <body>
 
     <div class="contenedor">
-      <div class="sobre" onclick="abrirSobre(this)">
+     <div class="sobre" onclick="abrirSobre(this)">
+    <div class="solapa"></div>
+    <div class="hoja">💌</div>
+</div>
+
+<img id="fotoAmor" src="foto.jpg" alt="Nuestra foto">
     <div class="solapa"></div>
     <div class="hoja">💌</div>
 </div>
@@ -215,11 +240,12 @@ nano index.html    color: #5a1833;
 
     </div>
 
+
     <script>
        function abrirSobre(sobre) {
     sobre.classList.toggle("abierto");}
             function mostrarMensaje() {
-            document.getElementById("mensaje").style.display = "block";
+            document.getElementById("fotoamor").style.display = "block";
         }
 
         function crearCorazon() {
