@@ -1,3 +1,6 @@
+cd ~/pagina-amor
+
+cat > canzu.html <<'EOF'
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Para Canzu ❤️</title>
-
 
 <!-- Google Analytics -->
 
@@ -24,7 +26,6 @@ gtag('js', new Date());
 
 gtag('config', 'G-RBFGGV2YV3');
 </script>
-
 
 <style>
 
@@ -253,7 +254,6 @@ button:active {
 </style>
 </head>
 
-
 <body>
 
 <div class="fondo">
@@ -272,9 +272,7 @@ button:active {
 
 </div>
 
-
 <div class="contenedor">
-
 
     <div class="sobre" onclick="abrirSobre(this)">
 
@@ -286,22 +284,18 @@ button:active {
 
     </div>
 
-
     <div class="corazon">
         ❤️
     </div>
-
 
     <div class="nombre">
         Para Canzu ✨
     </div>
 
-
     <p>
         Esta página fue creada
         especialmente para ti. 💖
     </p>
-
 
     <p>
         Hay personas que hacen que
@@ -309,18 +303,15 @@ button:active {
         bonitos y para mí eres tú. ✨
     </p>
 
-
     <img
         id="fotoAmor"
         src="canzu.jpg"
-        alt="Una foto especial"
+        alt="Una foto especial de Canzu"
     >
-
 
     <button onclick="mostrarMensaje()">
         💖 Tengo algo que decirte
     </button>
-
 
     <div id="mensaje">
 
@@ -340,14 +331,11 @@ button:active {
 
     </div>
 
-
     <div class="final">
         ❤️ Con cariño ❤️
     </div>
 
-
 </div>
-
 
 <script>
 
@@ -378,7 +366,6 @@ function abrirSobre(sobre) {
 
 }
 
-
 function mostrarMensaje() {
 
     const mensaje = document.getElementById("mensaje");
@@ -394,6 +381,9 @@ function mostrarMensaje() {
 
 </script>
 
-
 </body>
 </html>
+EOF
+
+cp "/storage/emulated/0/Pictures/WhatsApp/IMG-20260906-WA0015.jpg" canzu.jpg
+
