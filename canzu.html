@@ -1,0 +1,317 @@
+cat > canzu.html <<'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Canzu ❤️</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RBFGGV2YV3"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RBFGGV2YV3');
+</script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #c471ed);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 430px;
+    padding: 30px 22px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 34px;
+    margin: 5px 0 10px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+.subtitulo {
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.corazon {
+    font-size: 55px;
+    animation: latido 1.2s infinite;
+}
+
+@keyframes latido {
+    0%,100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+}
+
+/* FOTO */
+
+.foto {
+    width: 100%;
+    max-width: 300px;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: 22px;
+    margin: 15px auto 25px;
+    display: block;
+    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* SOBRE */
+
+.sobre {
+    position: relative;
+    width: 230px;
+    height: 150px;
+    margin: 25px auto;
+    cursor: pointer;
+}
+
+.cuerpo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.solapa {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-top: 80px solid #ffb6c9;
+    top: 0;
+    left: 0;
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 3;
+}
+
+.hoja {
+    position: absolute;
+    background: white;
+    color: #ff4f81;
+    width: 190px;
+    height: 115px;
+    left: 20px;
+    top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 2;
+    transition: transform 0.8s ease;
+    font-weight: bold;
+}
+
+.sobre.abierto .solapa {
+    transform: rotateX(180deg);
+}
+
+.sobre.abierto .hoja {
+    transform: translateY(-65px);
+}
+
+/* BOTÓN */
+
+button {
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    background: white;
+    color: #ff4f81;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* MENSAJE */
+
+.mensaje {
+    display: none;
+    margin-top: 25px;
+    line-height: 1.7;
+    font-size: 17px;
+    animation: aparecer 1s ease;
+}
+
+.mensaje.mostrar {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CORAZONES */
+
+.corazon-flotante {
+    position: fixed;
+    bottom: -50px;
+    font-size: 25px;
+    animation: subir linear forwards;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="corazon">❤️</div>
+
+    <h1>Para Canzu ✨</h1>
+
+    <p class="subtitulo">
+        Esta página fue creada especialmente para ti 💌
+    </p>
+
+    <!-- FOTO DE CANZU -->
+    <img src="canzu.jpg" alt="Foto especial de Canzu" class="foto">
+
+    <!-- SOBRE -->
+    <div class="sobre" id="sobre" onclick="abrirSobre()">
+
+        <div class="cuerpo"></div>
+
+        <div class="hoja">
+            💕 Para Canzu 💕
+            <br><br>
+            Abre el sobre...
+        </div>
+
+        <div class="solapa"></div>
+
+    </div>
+
+    <button onclick="mostrarMensaje()">
+        💕 Tengo algo que decirte
+    </button>
+
+    <div class="mensaje" id="mensaje">
+
+        Canzu ❤️<br><br>
+
+        Hay personas que llegan a nuestra vida
+        y hacen que todo se sienta un poquito más bonito. ✨<br><br>
+
+        Esta pequeña página es solo una forma
+        de decirte que eres alguien especial. 💕<br><br>
+
+        Espero que cuando veas esto,
+        te saque aunque sea una pequeña sonrisa. 😊❤️
+
+    </div>
+
+</div>
+
+<script>
+
+function abrirSobre() {
+    document.getElementById("sobre").classList.toggle("abierto");
+}
+
+function mostrarMensaje() {
+    document.getElementById("mensaje").classList.add("mostrar");
+}
+
+function crearCorazon() {
+
+    const corazon = document.createElement("div");
+
+    corazon.className = "corazon-flotante";
+
+    const corazones = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "💓",
+        "💘"
+    ];
+
+    corazon.innerHTML =
+        corazones[Math.floor(Math.random() * corazones.length)];
+
+    corazon.style.left =
+        Math.random() * 100 + "vw";
+
+    corazon.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    corazon.style.fontSize =
+        (18 + Math.random() * 25) + "px";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 9000);
+}
+
+setInterval(crearCorazon, 500);
+
+</script>
+
+</body>
+</html>
+EOF
