@@ -1,21 +1,33 @@
-cat > canzu.html <<'EOF'
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Para Canzu ❤️</title>
 
+
+<!-- Google Analytics -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBFGGV2YV3"></script>
+
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
 gtag('js', new Date());
+
 gtag('config', 'G-RBFGGV2YV3');
 </script>
 
+
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -23,135 +35,175 @@ gtag('config', 'G-RBFGGV2YV3');
 body {
     margin: 0;
     min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #a18cd1);
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3, #c471ed);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 20px;
+    color: #fff;
 }
 
-.card {
-    width: 100%;
-    max-width: 430px;
-    padding: 30px 22px;
-    text-align: center;
+.fondo {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: subir 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px 18px 50px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
     border-radius: 30px;
-    background: rgba(255,255,255,0.16);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    position: relative;
-    z-index: 2;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    text-align: center;
 }
-
-h1 {
-    font-size: 34px;
-    margin: 5px 0 10px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.25);
-}
-
-.subtitulo {
-    font-size: 17px;
-    margin-bottom: 20px;
-}
-
-.corazon {
-    font-size: 55px;
-    animation: latido 1.2s infinite;
-}
-
-@keyframes latido {
-    0%,100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.25);
-    }
-}
-
-/* FOTO */
-
-.foto {
-    width: 100%;
-    max-width: 300px;
-    max-height: 380px;
-    object-fit: cover;
-    border-radius: 22px;
-    margin: 15px auto 25px;
-    display: block;
-    border: 4px solid rgba(255,255,255,0.8);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-/* SOBRE */
 
 .sobre {
     position: relative;
-    width: 230px;
-    height: 150px;
-    margin: 25px auto;
+    width: 280px;
+    height: 180px;
+    margin: 10px auto 35px;
+    background: #ff176f;
+    border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0 15px 35px rgba(255,0,100,0.5);
+    transition: transform 0.5s;
 }
 
-.cuerpo {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+.sobre:hover {
+    transform: scale(1.04);
+}
+
+.sobre:active {
+    transform: scale(0.95);
 }
 
 .solapa {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 115px solid transparent;
-    border-right: 115px solid transparent;
-    border-top: 80px solid #ffb6c9;
     top: 0;
     left: 0;
-    transform-origin: top;
-    transition: transform 0.8s ease;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 95px solid #c90050;
     z-index: 3;
-}
-
-.hoja {
-    position: absolute;
-    background: white;
-    color: #ff4f81;
-    width: 190px;
-    height: 115px;
-    left: 20px;
-    top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    z-index: 2;
-    transition: transform 0.8s ease;
-    font-weight: bold;
+    transform-origin: top;
+    transition: transform 0.8s;
 }
 
 .sobre.abierto .solapa {
     transform: rotateX(180deg);
 }
 
-.sobre.abierto .hoja {
-    transform: translateY(-65px);
+.hoja {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 90px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    z-index: 2;
 }
 
-/* BOTÓN */
+.corazon {
+    font-size: 100px;
+    animation: latido 1.2s infinite;
+    filter: drop-shadow(0 5px 15px rgba(255,0,80,0.5));
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+.nombre {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0 20px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+p {
+    font-size: 22px;
+    line-height: 1.6;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#fotoAmor {
+    display: none;
+    width: 90%;
+    max-width: 380px;
+    margin: 30px auto;
+    border-radius: 25px;
+    border: 5px solid white;
+    box-shadow:
+        0 0 20px #fff,
+        0 0 40px #ff1493;
+    animation: aparecerFoto 1.5s ease;
+}
+
+@keyframes aparecerFoto {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+    }
+
+    60% {
+        transform: scale(1.1) rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
 
 button {
     border: none;
-    padding: 15px 25px;
-    border-radius: 30px;
     background: white;
-    color: #ff4f81;
-    font-size: 17px;
+    color: #d41463;
+    padding: 17px 25px;
+    border-radius: 40px;
+    font-size: 19px;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -162,24 +214,24 @@ button:hover {
     transform: scale(1.08);
 }
 
-/* MENSAJE */
+button:active {
+    transform: scale(0.95);
+}
 
-.mensaje {
+#mensaje {
     display: none;
     margin-top: 25px;
-    line-height: 1.7;
-    font-size: 17px;
-    animation: aparecer 1s ease;
+    padding: 25px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 25px;
+    animation: mensaje 1s ease;
 }
 
-.mensaje.mostrar {
-    display: block;
-}
+@keyframes mensaje {
 
-@keyframes aparecer {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
 
     to {
@@ -188,130 +240,160 @@ button:hover {
     }
 }
 
-/* CORAZONES */
-
-.corazon-flotante {
-    position: fixed;
-    bottom: -50px;
-    font-size: 25px;
-    animation: subir linear forwards;
-    pointer-events: none;
-    z-index: 1;
+#mensaje p {
+    font-size: 21px;
 }
 
-@keyframes subir {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-    }
+.final {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
 }
+
 </style>
 </head>
 
+
 <body>
 
-<div class="card">
+<div class="fondo">
 
-    <div class="corazon">❤️</div>
+    <div class="corazon-flotante" style="left:10%; animation-delay:0s;">❤️</div>
 
-    <h1>Para Canzu ✨</h1>
+    <div class="corazon-flotante" style="left:25%; animation-delay:2s;">💗</div>
 
-    <p class="subtitulo">
-        Esta página fue creada especialmente para ti 💌
-    </p>
+    <div class="corazon-flotante" style="left:40%; animation-delay:4s;">💕</div>
 
-    <!-- FOTO DE CANZU -->
-    <img src="canzu.jpg" alt="Foto especial de Canzu" class="foto">
+    <div class="corazon-flotante" style="left:60%; animation-delay:1s;">💖</div>
 
-    <!-- SOBRE -->
-    <div class="sobre" id="sobre" onclick="abrirSobre()">
+    <div class="corazon-flotante" style="left:75%; animation-delay:3s;">❤️</div>
 
-        <div class="cuerpo"></div>
-
-        <div class="hoja">
-            💕 Para Canzu 💕
-            <br><br>
-            Abre el sobre...
-        </div>
-
-        <div class="solapa"></div>
-
-    </div>
-
-    <button onclick="mostrarMensaje()">
-        💕 Tengo algo que decirte
-    </button>
-
-    <div class="mensaje" id="mensaje">
-
-        Canzu ❤️<br><br>
-
-        Hay personas que llegan a nuestra vida
-        y hacen que todo se sienta un poquito más bonito. ✨<br><br>
-
-        Esta pequeña página es solo una forma
-        de decirte que eres alguien especial. 💕<br><br>
-
-        Espero que cuando veas esto,
-        te saque aunque sea una pequeña sonrisa. 😊❤️
-
-    </div>
+    <div class="corazon-flotante" style="left:90%; animation-delay:5s;">💘</div>
 
 </div>
 
+
+<div class="contenedor">
+
+
+    <div class="sobre" onclick="abrirSobre(this)">
+
+        <div class="solapa"></div>
+
+        <div class="hoja">
+            💌
+        </div>
+
+    </div>
+
+
+    <div class="corazon">
+        ❤️
+    </div>
+
+
+    <div class="nombre">
+        Para Canzu ✨
+    </div>
+
+
+    <p>
+        Esta página fue creada
+        especialmente para ti. 💖
+    </p>
+
+
+    <p>
+        Hay personas que hacen que
+        nuestros días sean mucho más
+        bonitos y para mí eres tú. ✨
+    </p>
+
+
+    <img
+        id="fotoAmor"
+        src="canzu.jpg"
+        alt="Una foto especial"
+    >
+
+
+    <button onclick="mostrarMensaje()">
+        💖 Tengo algo que decirte
+    </button>
+
+
+    <div id="mensaje">
+
+        <p>
+            💗 Si llegaste hasta aquí... 💗
+        </p>
+
+        <p>
+            Quiero que sepas que eres
+            una persona muy especial
+            para mí. 🌹
+        </p>
+
+        <p>
+            Gracias por existir. 💕
+        </p>
+
+    </div>
+
+
+    <div class="final">
+        ❤️ Con cariño ❤️
+    </div>
+
+
+</div>
+
+
 <script>
 
-function abrirSobre() {
-    document.getElementById("sobre").classList.toggle("abierto");
+function abrirSobre(sobre) {
+
+    sobre.classList.toggle("abierto");
+
+    const foto = document.getElementById("fotoAmor");
+
+    if (sobre.classList.contains("abierto")) {
+
+        foto.style.display = "block";
+
+        setTimeout(function() {
+
+            foto.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 500);
+
+    } else {
+
+        foto.style.display = "none";
+
+    }
+
 }
+
 
 function mostrarMensaje() {
-    document.getElementById("mensaje").classList.add("mostrar");
+
+    const mensaje = document.getElementById("mensaje");
+
+    mensaje.style.display = "block";
+
+    mensaje.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
 }
-
-function crearCorazon() {
-
-    const corazon = document.createElement("div");
-
-    corazon.className = "corazon-flotante";
-
-    const corazones = [
-        "❤️",
-        "💕",
-        "💖",
-        "💗",
-        "💓",
-        "💘"
-    ];
-
-    corazon.innerHTML =
-        corazones[Math.floor(Math.random() * corazones.length)];
-
-    corazon.style.left =
-        Math.random() * 100 + "vw";
-
-    corazon.style.animationDuration =
-        (4 + Math.random() * 5) + "s";
-
-    corazon.style.fontSize =
-        (18 + Math.random() * 25) + "px";
-
-    document.body.appendChild(corazon);
-
-    setTimeout(() => {
-        corazon.remove();
-    }, 9000);
-}
-
-setInterval(crearCorazon, 500);
 
 </script>
 
+
 </body>
 </html>
-EOF
