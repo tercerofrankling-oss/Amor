@@ -1,0 +1,180 @@
+cat > marielita.html <<'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Marielita ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg,#ff4f9a,#9b4dca,#4b6cff);
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px 20px 45px;
+    background: rgba(255,255,255,.18);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.3);
+}
+
+.carta {
+    font-size: 100px;
+    cursor: pointer;
+    animation: latido 1.2s infinite;
+}
+
+@keyframes latido {
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+h1 {
+    font-size: 48px;
+    text-shadow: 0 0 15px #fff;
+}
+
+p {
+    font-size: 21px;
+    line-height: 1.6;
+}
+
+.foto {
+    width: 90%;
+    max-width: 380px;
+    border-radius: 25px;
+    border: 5px solid white;
+    box-shadow: 0 0 25px white;
+    margin: 25px auto;
+    display: block;
+}
+
+button {
+    padding: 16px 25px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #d41463;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#mensaje {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.2);
+}
+
+.corazon {
+    position: fixed;
+    bottom: -40px;
+    animation: subir 6s linear forwards;
+    font-size: 25px;
+}
+
+@keyframes subir {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="carta" onclick="corazones()">
+        💌
+    </div>
+
+    <h1>Para Marielita ❤️</h1>
+
+    <p>
+        Esta página fue creada especialmente para ti. 💕
+    </p>
+
+    <img
+        src="marielita.jpg"
+        alt="Foto de Marielita"
+        class="foto"
+    >
+
+    <p>
+        Hay personas que hacen que nuestros días
+        sean más bonitos simplemente por existir. 🌹
+    </p>
+
+    <button onclick="mostrar()">
+        💖 Tengo algo que decirte
+    </button>
+
+    <div id="mensaje">
+
+        <p>
+            Marielita ❤️
+        </p>
+
+        <p>
+            Eres una persona muy especial.
+            Espero que esta pequeña página
+            te saque una sonrisa. 😊💕
+        </p>
+
+        <p>
+            Nunca olvides lo mucho que vales. 🌹
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function mostrar() {
+    document.getElementById("mensaje").style.display = "block";
+    corazones();
+}
+
+function corazones() {
+
+    for(let i = 0; i < 15; i++) {
+
+        let c = document.createElement("div");
+
+        c.className = "corazon";
+
+        c.innerHTML =
+            Math.random() > .5 ? "❤️" : "💖";
+
+        c.style.left =
+            Math.random() * 100 + "vw";
+
+        c.style.animationDuration =
+            (4 + Math.random() * 4) + "s";
+
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 8000);
+    }
+}
+
+</script>
+
+</body>
+</html>
+EO

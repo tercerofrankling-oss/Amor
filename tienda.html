@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Tienda | Productos y Ofertas</title>
+    <meta name="description" content="Descubre productos recomendados, ofertas y novedades de diferentes categorías.">
+
+    <!-- =========================
+         GOOGLE ANALYTICS
+         ========================= -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBFGGV2YV3"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-RBFGGV2YV3');
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #d1d5db;
+        }
+
+        .buscador {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+            padding: 0 15px;
+        }
+
+        .buscador input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .categorias {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 15px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .categorias button {
+            border: none;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .categorias button:hover {
+            background: #111827;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 10px 15px 40px;
+        }
+
+        .titulo {
+            margin: 20px 0;
+            font-size: 24px;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .producto:hover {
+            transform: translateY(-4px);
+        }
+
+        .producto img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .contenido {
+            padding: 15px;
+        }
+
+        .categoria {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .producto h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .precio {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .boton {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 9px;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+        .boton:hover {
+            background: #374151;
+        }
+
+        .sin-resultados {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        footer {
+            background: #111827;
+            color: #d1d5db;
+            text-align: center;
+            padding: 30px 15px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .producto img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛍️ Mi Tienda</h1>
+    <p>Productos, recomendaciones y ofertas</p>
+</header>
+
+<div class="buscador">
+    <input
+        type="text"
+        id="busqueda"
+        placeholder="🔎 Buscar productos..."
+        oninput="buscarProducto()"
+    >
+</div>
+
+<div class="categorias">
+
+    <button onclick="filtrar('todos')">
+        🛍️ Todos
+    </button>
+
+    <button onclick="filtrar('Tecnología')">
+        📱 Tecnología
+    </button>
+
+    <button onclick="filtrar('Ropa')">
+        👕 Ropa
+    </button>
+
+    <button onclick="filtrar('Hogar')">
+        🏠 Hogar
+    </button>
+
+    <button onclick="filtrar('Gaming')">
+        🎮 Gaming
+    </button>
+
+    <button onclick="filtrar('Belleza')">
+        💄 Belleza
+    </button>
+
+    <button onclick="filtrar('Deportes')">
+        ⚽ Deportes
+    </button>
+
+    <button onclick="filtrar('Herramientas')">
+        🔧 Herramientas
+    </button>
+
+</div>
+
+<main>
+
+    <h2 class="titulo">🔥 Productos recomendados</h2>
+
+    <div class="productos" id="productos">
+
+        <!-- PRODUCTO 1 -->
+        <div class="producto" data-categoria="Tecnología" data-nombre="Audífonos inalámbricos">
+
+            <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+                alt="Audífonos inalámbricos"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    📱 Tecnología
+                </div>
+
+                <h3>
+                    Audífonos inalámbricos
+                </h3>
+
+                <div class="precio">
+                    $29.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Audífonos inalámbricos', 'Tecnología')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 2 -->
+        <div class="producto" data-categoria="Tecnología" data-nombre="Smartwatch">
+
+            <img
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+                alt="Smartwatch"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    📱 Tecnología
+                </div>
+
+                <h3>
+                    Smartwatch
+                </h3>
+
+                <div class="precio">
+                    $39.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Smartwatch', 'Tecnología')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 3 -->
+        <div class="producto" data-categoria="Ropa" data-nombre="Camiseta deportiva">
+
+            <img
+                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+                alt="Camiseta deportiva"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    👕 Ropa
+                </div>
+
+                <h3>
+                    Camiseta deportiva
+                </h3>
+
+                <div class="precio">
+                    $19.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Camiseta deportiva', 'Ropa')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 4 -->
+        <div class="producto" data-categoria="Hogar" data-nombre="Lámpara LED">
+
+            <img
+                src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"
+                alt="Lámpara LED"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    🏠 Hogar
+                </div>
+
+                <h3>
+                    Lámpara LED
+                </h3>
+
+                <div class="precio">
+                    $24.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Lámpara LED', 'Hogar')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 5 -->
+        <div class="producto" data-categoria="Gaming" data-nombre="Mouse gaming">
+
+            <img
+                src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80"
+                alt="Mouse gaming"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    🎮 Gaming
+                </div>
+
+                <h3>
+                    Mouse gaming
+                </h3>
+
+                <div class="precio">
+                    $27.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Mouse gaming', 'Gaming')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 6 -->
+        <div class="producto" data-categoria="Belleza" data-nombre="Espejo de maquillaje">
+
+            <img
+                src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"
+                alt="Productos de belleza"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    💄 Belleza
+                </div>
+
+                <h3>
+                    Espejo de maquillaje
+                </h3>
+
+                <div class="precio">
+                    $22.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Espejo de maquillaje', 'Belleza')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 7 -->
+        <div class="producto" data-categoria="Deportes" data-nombre="Balón deportivo">
+
+            <img
+                src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80"
+                alt="Balón deportivo"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    ⚽ Deportes
+                </div>
+
+                <h3>
+                    Balón deportivo
+                </h3>
+
+                <div class="precio">
+                    $25.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Balón deportivo', 'Deportes')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCTO 8 -->
+        <div class="producto" data-categoria="Herramientas" data-nombre="Kit de herramientas">
+
+            <img
+                src="https://images.unsplash.com/photo-1581147036324-c17ac41a1b1f?auto=format&fit=crop&w=600&q=80"
+                alt="Kit de herramientas"
+            >
+
+            <div class="contenido">
+
+                <div class="categoria">
+                    🔧 Herramientas
+                </div>
+
+                <h3>
+                    Kit de herramientas
+                </h3>
+
+                <div class="precio">
+                    $34.99
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://www.amazon.com/"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onclick="registrarProducto('Kit de herramientas', 'Herramientas')"
+                >
+                    🛒 Ver producto
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="sin-resultados" id="sinResultados">
+        <h2>😕 No encontramos ese producto</h2>
+        <p>Prueba con otra búsqueda.</p>
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>🛍️ Mi Tienda</p>
+
+    <p>
+        Productos recomendados y ofertas.
+    </p>
+
+    <p>
+        Algunos enlaces pueden generar una comisión.
+    </p>
+
+    <p>
+        © 2026 Mi Tienda
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       FILTRAR POR CATEGORÍA
+       ========================= */
+
+    function filtrar(categoria) {
+
+        const productos =
+            document.querySelectorAll('.producto');
+
+        productos.forEach(producto => {
+
+            if (
+                categoria === 'todos' ||
+                producto.dataset.categoria === categoria
+            ) {
+
+                producto.style.display = 'block';
+
+            } else {
+
+                producto.style.display = 'none';
+
+            }
+
+        });
+
+        registrarCategoria(categoria);
+    }
+
+
+    /* =========================
+       BUSCADOR
+       ========================= */
+
+    function buscarProducto() {
+
+        const texto =
+            document
+            .getElementById('busqueda')
+            .value
+            .toLowerCase();
+
+        const productos =
+            document.querySelectorAll('.producto');
+
+        let encontrados = 0;
+
+        productos.forEach(producto => {
+
+            const nombre =
+                producto.dataset.nombre.toLowerCase();
+
+            const categoria =
+                producto.dataset.categoria.toLowerCase();
+
+            if (
+                nombre.includes(texto) ||
+                categoria.includes(texto)
+            ) {
+
+                producto.style.display = 'block';
+
+                encontrados++;
+
+            } else {
+
+                producto.style.display = 'none';
+
+            }
+
+        });
+
+
+        const mensaje =
+            document.getElementById('sinResultados');
+
+        if (encontrados === 0) {
+
+            mensaje.style.display = 'block';
+
+        } else {
+
+            mensaje.style.display = 'none';
+
+        }
+
+    }
+
+
+    /* =========================
+       GOOGLE ANALYTICS
+       CLIC EN PRODUCTO
+       ========================= */
+
+    function registrarProducto(nombre, categoria) {
+
+        gtag('event', 'clic_producto', {
+
+            producto: nombre,
+
+            categoria: categoria
+
+        });
+
+    }
+
+
+    /* =========================
+       GOOGLE ANALYTICS
+       CATEGORÍA
+       ========================= */
+
+    function registrarCategoria(categoria) {
+
+        gtag('event', 'seleccionar_categoria', {
+
+            categoria: categoria
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Judeliz ❤️</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RBFGGV2YV3"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+gtag('config', 'G-RBFGGV2YV3');
+</script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at top, #ffb6d9, transparent 35%),
+        linear-gradient(135deg, #ff4f9a, #9b4dca, #4b6cff);
+
+    overflow-x: hidden;
+}
+
+.fondo {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -60px;
+    font-size: 25px;
+    animation: subir 9s linear infinite;
+    opacity: 0;
+}
+
+@keyframes subir {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.contenedor {
+    position: relative;
+    z-index: 2;
+
+    width: 92%;
+    max-width: 500px;
+
+    margin: 30px auto;
+
+    padding: 25px 18px 50px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    border-radius: 30px;
+
+    box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+}
+
+/* CARTA */
+
+.sobre {
+    position: relative;
+
+    width: 280px;
+    height: 180px;
+
+    margin: 10px auto 40px;
+
+    background: linear-gradient(135deg, #ff1673, #d40055);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    box-shadow: 0 15px 35px rgba(255,0,120,0.5);
+
+    transition: transform 0.4s;
+}
+
+.sobre:hover {
+    transform: scale(1.05);
+}
+
+.sobre:active {
+    transform: scale(0.94);
+}
+
+.solapa {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #a90046;
+
+    z-index: 3;
+
+    transform-origin: top;
+
+    transition: transform 0.9s;
+}
+
+.sobre.abierto .solapa {
+    transform: rotateX(180deg);
+}
+
+.hoja {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 135px;
+    height: 90px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+
+    z-index: 2;
+}
+
+/* CORAZÓN */
+
+.corazon {
+    font-size: 100px;
+
+    filter: drop-shadow(0 5px 10px rgba(255,0,80,0.5));
+
+    animation: latido 1.2s infinite;
+}
+
+@keyframes latido {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+/* NOMBRE */
+
+.nombre {
+    font-size: 42px;
+    font-weight: bold;
+
+    margin: 10px 0 20px;
+
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    animation: aparecer 1.5s ease;
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TEXTO */
+
+p {
+    font-size: 21px;
+    line-height: 1.6;
+
+    text-shadow: 0 2px 5px rgba(0,0,0,0.25);
+}
+
+/* FOTO */
+
+.foto {
+    width: 90%;
+    max-width: 380px;
+
+    margin: 30px auto;
+
+    display: block;
+
+    border-radius: 25px;
+
+    border: 5px solid white;
+
+    box-shadow:
+        0 0 20px white,
+        0 0 45px #ff1493;
+
+    animation: aparecerFoto 1.5s ease;
+}
+
+@keyframes aparecerFoto {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+    }
+
+    60% {
+        transform: scale(1.08) rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* BOTÓN */
+
+button {
+    border: none;
+
+    background: white;
+
+    color: #d41463;
+
+    padding: 17px 28px;
+
+    border-radius: 40px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+/* MENSAJE */
+
+#mensaje {
+    display: none;
+
+    margin-top: 25px;
+    padding: 25px;
+
+    background: rgba(255,255,255,0.2);
+
+    border-radius: 25px;
+
+    animation: aparecer 1s ease;
+}
+
+.final {
+    margin-top: 30px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- CORAZONES -->
+
+<div class="fondo">
+
+    <div class="corazon-flotante"
+         style="left:5%; animation-delay:0s;">❤️</div>
+
+    <div class="corazon-flotante"
+         style="left:18%; animation-delay:2s;">💗</div>
+
+    <div class="corazon-flotante"
+         style="left:32%; animation-delay:4s;">💕</div>
+
+    <div class="corazon-flotante"
+         style="left:48%; animation-delay:1s;">💖</div>
+
+    <div class="corazon-flotante"
+         style="left:63%; animation-delay:3s;">💘</div>
+
+    <div class="corazon-flotante"
+         style="left:78%; animation-delay:5s;">❤️</div>
+
+    <div class="corazon-flotante"
+         style="left:92%; animation-delay:2s;">💞</div>
+
+</div>
+
+
+<div class="contenedor">
+
+    <!-- CARTA -->
+
+    <div class="sobre" onclick="abrirSobre(this)">
+
+        <div class="solapa"></div>
+
+        <div class="hoja">
+            💌
+        </div>
+
+    </div>
+
+
+    <!-- CORAZÓN -->
+
+    <div class="corazon">
+        ❤️
+    </div>
+
+
+    <!-- NOMBRE -->
+
+    <div class="nombre">
+        Para Judeliz ✨
+    </div>
+
+
+    <p>
+        Esta página fue creada
+        especialmente para ti. 💖
+    </p>
+
+
+    <p>
+        Hay personas que llegan
+        a nuestras vidas y hacen
+        que todo se sienta
+        un poquito más bonito. 🌹
+    </p>
+
+
+    <p>
+        Y tú eres una de
+        esas personas. 💕
+    </p>
+
+
+    <!-- FOTO -->
+
+    <img
+        src="judeliz.jpg"
+        alt="Foto especial de Judeliz"
+        class="foto"
+    >
+
+
+    <!-- BOTÓN -->
+
+    <button onclick="mostrarMensaje()">
+        💕 Tengo algo que decirte
+    </button>
+
+
+    <!-- MENSAJE -->
+
+    <div id="mensaje">
+
+        <p>
+            💗 Judeliz... 💗
+        </p>
+
+        <p>
+            Quiero que sepas que eres
+            una persona muy especial
+            para mí. 🌹
+        </p>
+
+        <p>
+            Espero que esta pequeña
+            página te saque una sonrisa. 😊❤️
+        </p>
+
+        <p>
+            Gracias por existir. 💕
+        </p>
+
+    </div>
+
+
+    <div class="final">
+        ❤️ Hecho especialmente para ti ❤️
+    </div>
+
+</div>
+
+
+<script>
+
+function abrirSobre(sobre) {
+
+    sobre.classList.toggle("abierto");
+
+    if (sobre.classList.contains("abierto")) {
+
+        setTimeout(function() {
+
+            document.querySelector(".foto").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 500);
+    }
+}
+
+
+function mostrarMensaje() {
+
+    const mensaje =
+        document.getElementById("mensaje");
+
+    mensaje.style.display = "block";
+
+    mensaje.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+</script>
+
+</body>
+</html>
