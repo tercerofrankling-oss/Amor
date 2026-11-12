@@ -1,0 +1,268 @@
+cat > index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Tania ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg,#260018,#800044,#d63384);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 25px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 25px;
+    box-shadow: 0 10px 35px #0005;
+    backdrop-filter: blur(12px);
+}
+
+h1 {
+    color: #ffd6e7;
+}
+
+#contador {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.numero {
+    display: inline-block;
+    padding: 10px;
+    margin: 3px;
+    background: #ffffff20;
+    border-radius: 12px;
+}
+
+.numero span {
+    display: block;
+    font-size: 12px;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 13px 25px;
+    background: #ffb6d5;
+    color: #66002e;
+    font-size: 17px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+#sorpresa {
+    display: none;
+    animation: aparecer 2s;
+}
+
+#sorpresa img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 5px 25px #0006;
+}
+
+.carta {
+    line-height: 1.8;
+    font-size: 18px;
+    text-align: justify;
+    padding: 10px;
+}
+
+.sobre {
+    font-size: 90px;
+    cursor: pointer;
+    animation: latido 1.2s infinite;
+}
+
+.corazon {
+    position: fixed;
+    bottom: -30px;
+    animation: subir 7s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes latido {
+    50% { transform: scale(1.15); }
+}
+
+@keyframes subir {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes aparecer {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+#bloqueo {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor" id="bloqueo">
+
+    <h1>Una sorpresa para Tania ❤️</h1>
+
+    <p>Hay algo especial esperando por usted...</p>
+
+    <div style="font-size:65px">🎁</div>
+
+    <h2>Su sorpresa estará disponible en:</h2>
+
+    <div id="contador">
+        Cargando...
+    </div>
+
+    <p>11 de diciembre de 2026 ❤️</p>
+
+    <p>La paciencia también forma parte de las sorpresas.</p>
+
+</div>
+
+<div class="contenedor" id="sorpresa">
+
+    <h1>¡Feliz cumpleaños, Tania! 🎂❤️</h1>
+
+    <p>Hoy es un día muy especial...</p>
+
+    <div class="sobre" onclick="abrirCarta()">💌</div>
+
+    <p>Tocá el sobre para descubrir tu sorpresa.</p>
+
+    <div id="contenido" style="display:none">
+
+        <h2>Para usted, Tania ❤️</h2>
+
+        <img src="tania.jpg" alt="Una fotografía especial">
+
+        <div class="carta">
+
+            <p>
+            Hoy quiero desearle un cumpleaños lleno de alegría,
+            sonrisas y momentos inolvidables.
+            </p>
+
+            <p>
+            Tal vez estas palabras sean sencillas, pero fueron
+            preparadas con mucho cariño.
+            </p>
+
+            <p>
+            Quiero que recuerde que usted es una persona especial
+            y que merece cosas bonitas en su vida.
+            </p>
+
+            <p>
+            Que Dios le regale muchos años más de vida,
+            salud y felicidad.
+            </p>
+
+            <h2 style="text-align:center">
+            ¡Feliz cumpleaños! ❤️
+            </h2>
+
+        </div>
+
+        <button onclick="mensajeFinal()">
+        Una última sorpresa ❤️
+        </button>
+
+        <div id="final" style="display:none">
+            <h2>Gracias por existir, Tania. ❤️</h2>
+            <p>Con mucho cariño, de Frankling. 💗</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const fecha = new Date("2026-12-11T00:00:00-06:00");
+
+function actualizar() {
+
+    const ahora = new Date();
+    const diferencia = fecha - ahora;
+
+    if (diferencia <= 0) {
+
+        document.getElementById("bloqueo").style.display = "none";
+        document.getElementById("sorpresa").style.display = "block";
+
+        return;
+    }
+
+    const dias = Math.floor(diferencia / 86400000);
+    const horas = Math.floor((diferencia % 86400000) / 3600000);
+    const minutos = Math.floor((diferencia % 3600000) / 60000);
+    const segundos = Math.floor((diferencia % 60000) / 1000);
+
+    document.getElementById("contador").innerHTML = `
+        <div class="numero">${dias}<span>Días</span></div>
+        <div class="numero">${horas}<span>Horas</span></div>
+        <div class="numero">${minutos}<span>Minutos</span></div>
+        <div class="numero">${segundos}<span>Segundos</span></div>
+    `;
+}
+
+function abrirCarta() {
+    document.getElementById("contenido").style.display = "block";
+}
+
+function mensajeFinal() {
+    document.getElementById("final").style.display = "block";
+}
+
+setInterval(actualizar, 1000);
+actualizar();
+
+function crearCorazon() {
+
+    const corazon = document.createElement("div");
+
+    corazon.className = "corazon";
+    corazon.innerHTML = "❤️";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (15 + Math.random() * 25) + "px";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => corazon.remove(), 7000);
+}
+
+setInterval(crearCorazon, 500);
+
+</script>
+
+</body>
+</html>
+EOF
